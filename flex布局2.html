@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 1200px;
+        background-color: #ccc;
+    }
+
+    span {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        font-size: 100px;
+        text-align: center;
+        line-height: 200px;
+        color: black;
+        background-color: pink;
+    }
+
+    .one span:nth-child(2) {
+        order: 1;
+        /* 数值越小排列越靠前 默认是0 */
+    }
+
+    .two {
+        flex-grow: 1;
+    }
+
+    .two span:nth-child(2) {
+        flex-grow: 2;
+        /* 碰见有固定宽度的子元素先减去固定空间 在平分 */
+    }
+
+
+    .three span:nth-child(2) {
+        flex-shrink: 0;
+        /* 0是不被压缩 */
+    }
+
+    .three span:nth-child(3) {
+        flex-shrink: 5;
+        /* 0是不被压缩 */
+    }
+
+
+    .four {
+        flex-basis: 400px;
+        /* 优先级比width高 */
+    }
+
+    .five {
+        height: 400px;
+        align-items: center;
+    }
+
+    .five span:nth-child(2) {
+        align-self: flex-end;
+    }
+
+    .five span:nth-child(4) {
+        align-self: flex-start;
+    }
+</style>
+
+<body>
+    <!-- 1 -->
+    <p>项目的属性</p>
+    <p>order 定义项目的排列顺序 默认是0 数值越小排序越靠前</p>
+    <div class="container one">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+
+    <!-- 2 -->
+    <p>flex-grow属性定义项目的放大比例 默认是0 即使存在剩余空间 也不放大</p>
+    <!-- 如果所有的项目flex-grow 属性都为1 则他们将等剩余空间（如果有的话） -->
+    <!-- 如果一个项目 flex-grow 属性2 其它项目都为1 则前者占据的剩余空间将比其它项多一倍 -->
+    <div class="container two">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+
+    <!-- 3 -->
+    <p>flex-shrink 属性定义了项目缩小的比例 默认为1 即如果空间不足则缩小</p>
+    <!-- 如果所有项目的flxe-shrink属性为1 当空间不足的时候 都将等比例缩小 -->
+    <!-- 如果一个项目的flex-shrink的值为0 其他项都为1 则空间不足的时候前者不缩小 -->
+    <!-- 负值对该属性无效 -->
+    <div class="container three">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+    </div>
+
+    <!-- 4 -->
+    <p>flex-basis 属性定义了在分配多余空间之前 项目占据的主轴空间（main size）</p>
+    <p>浏览器根据这个特性 计算主轴是否有多余的空间</p>
+    <p>他的默认值是auto 即项目的本来大小</p>
+    <div class="container four">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+
+    <!-- 5 -->
+    <!-- flex属性为grow shrink basis的简写 如 flex:0 1 auto  后两个是可选的 -->
+    <!-- 如 flex:1; -->
+
+    <!-- 6 -->
+    <p>align-items > align-self self默认继承items属性 self允许某子元素有自己的对齐方式</p>
+    <!-- 有父元素 默认为auto继承  无父元素 默认为stretch -->
+    <div class="container five">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+    </div>
+
+</body>
+
+
+</html>

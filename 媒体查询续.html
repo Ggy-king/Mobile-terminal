@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @media (-webkit-device-pixel-ratio:2) {
+
+        /* 设备像素比为2 执行 */
+        body {
+            background-color: blue;
+        }
+    }
+
+    @media (orientation:landscape) {
+
+        /* orientation:landscape 横屏 */
+        /* orientation:portrait 竖屏 */
+        body {
+            background-color: red;
+        }
+    }
+
+    @media (aspect-ratio:3/4) {
+
+        /* 视口宽高比 */
+        body {
+            background-color: red;
+        }
+    }
+</style>
+
+<body>
+    <p>媒体查询{
+        类型 all screen print speech(残障人士)
+        <!-- all 可以省略 省略时and也需要省略 -->
+        逻辑 1 @media screen and(min) and(max){} 并且
+        2 @media screen and(max) ,(min){} 或 满足一个即可 但是这么写第二个为all 全部类型
+        3 正确表达 @media screen and(max) ,screen and (min){}
+        4 not 与and连用 范围为整体 与 ,连用则只管到,
+
+        }
+    </p>
+    <p>在移动端开发 一般从最小开始写</p>
+    <p>em单位是以自身字体为准 没有才向上找</p>
+    <p>rem单位就是跟的字体大小 html</p>
+</body>
+<script>
+    setRemUnit();
+
+    window.onresize = setRemUnit;
+
+
+    // 求 rem 单位
+    function setRemUnit() {
+        var docEl = document.documentElement;   //获取html元素
+        var viewWidth = docEl.clientWidth;    //视口宽度
+
+        docEl.style.fontSize = viewWidth / 375 * 20 + 'px';
+    }
+
+
+</script>
+
+</html>

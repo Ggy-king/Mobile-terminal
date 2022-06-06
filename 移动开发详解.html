@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 移动web开发基础概念
+        像素{
+            分辨率：显示内容的详细度
+            物理像素（PP）：把屏幕分成对应的点 点数越高分辨率越大显示越清晰
+            css像素(逻辑像素lp)(设备独立像素dip)：实际开发用到的像素px 浏览器自动换成物理像素
+            设备像素比（DP）（dpr）：设备像素/css像素 （缩放比为1时）
+            标清屏和高清屏：设备像素比为1是标清 大于1为高清
+            缩放：改变的是css像素的大小
+            PPI/DPI：是每英寸的物理像素点 也可以理解为像素密度
+            <!-- 英寸描述手机是手机的对角线 -->
+        }
+        视口-viewport{
+            <!-- 视口一般是大于手机的窗口的 之所以能完全显示是因为其内容缩放了 -->
+            设视口 name="viewport"
+            所以要设视口的宽度等于设备的宽度 content="width=device-width"
+            调整缩放比 initial-scale=1
+            规定用户是否可以缩放 user-scalable=no
+            最大缩放比 maximum-scale=1
+            最小缩放比 minimum-scale=1
+        }
+
+    </p>
+    <p>2 移动web开发基础知识
+        box-sizing
+        图标字体{
+            引入css文件及四个字体文件
+            在index中可以使用class类名的方式引入图标字体
+            一般都会使用i标签引入
+        }
+        flex布局{
+            采用flex布局的元素 称为flex容器
+            flex容器的所有子元素自动成为容器成员（孙子除外） 称为flex项目
+            项目的属性 order flex-grow flex-shrink flex-basis align-self
+        }
+        媒体查询{
+            类型 all screen print speech(残障人士)
+            <!-- all 可以省略 省略时and也需要省略 -->
+            逻辑 1 @media screen and(min) and(max){} 并且
+                 2 @media screen and(max) ,(min){}  或 满足一个即可 但是这么写第二个为all 全部类型
+                 3 正确表达 @media screen and(max) ,screen and (min){}
+                 4 not 与and连用 范围为整体 与 ,连用则只管到,
+
+        }
+    </p>
+    <p>3 响应式布局</p>
+    <p>4 移动端屏幕适配</p>
+    <p>5 移动端事件</p>
+    <p>6 移动端调试</p>
+    <p>7 终端检测</p>
+    <p>8 移动端常见问题</p>
+    <p>9 移动端性能优化</p>
+
+</body>
+<script>
+    // 1 获取设备像素
+    console.log(window.innerWidth);
+    console.log(document.documentElement.clientWidth);
+    console.log(document.documentElement.getBoundingClientRect().width);
+
+    console.log(screen.width);   //尽量不要使用 有兼容性问题
+
+    // 2 获取物理像素比
+    console.log(window.devicePixelRatio);
+
+</script>
+
+</html>
