@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <script src="html5shiv.min.js"></script> -->
+<!-- 在e盘开发 这个路径无效 -->
+<script src="../临时存放/modernizr-custom.js"></script>
+
+
+<style>
+    header {
+        width: 100%;
+        height: 50px;
+        background-color: pink;
+        /* 实现水平居中 解决css3的兼容 */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* .flexbox header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .no-flexbox header {
+        text-align: center;
+        line-height: 50px;
+    } */
+    /* 好像过时了 它直接在html上加了class */
+</style>
+
+<body>
+    <header>1 浏览器兼容html5标签</header>
+    <p>2 判断某属性是否兼容使用if</p>
+    <p>3 css3解决一 通过工程化最后组装时添加上兼容写法</p>
+    <p>3 css3解决二 通过modernizr 添加一些class类名在不同浏览器支持下书写不同代码</p>
+</body>
+<script>
+    if (window.requestAnimationFrame) {
+        // 单纯判断 但是无法知道是否有前缀
+        // requestAnimationFrame()是一个专门为实现高性能的帧动画而设计的API 类似setTimeout() 不过是浏览器自己定义时间判断何时渲染
+    };
+    // 高级写法判断
+    var requestAnimationFrame = window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function (fn) {
+            // 或者实现 或者不用
+            setTimeout(fn, 16);
+        };
+    requestAnimationFrame(function () {
+        console.log(1);
+    })
+
+</script>
+
+</html>

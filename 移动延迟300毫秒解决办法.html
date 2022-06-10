@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>原因 double click 移动端双击放大 但用户第一次双击时浏览器等待300用来判断是否有下一步操作</p>
+    <p>chrome等部分浏览器设置 width=device-width 如果有该属性会禁止用户放大</p>
+    <p>fastclick解决</p>
+</body>
+<script src="./fastclick.js"></script>
+<script>
+    if ('addEventListener' in document) {
+        document.addEventListener('DOMContentLoaded', function () {
+            FastClick.attach(document.body);
+        }, false);
+    }
+</script>
+
+</html>

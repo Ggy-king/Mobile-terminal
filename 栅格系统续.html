@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* 清除浮动较成熟 */
+    .container::after,
+    .container::before,
+    .row::after,
+    .row::before {
+        display: table;
+        content: ' ';
+    }
+
+    .container::after,
+    .row::after {
+        clear: both;
+    }
+</style>
+
+<body>
+    <p>container > row > col</p>
+    <p>父盒子内外边距调成正15 子盒子内外边距调成负15 实现贴边</p>
+    <!-- js选取内容单个使用id 多个使用class 这样效率最高 -->
+    <p>适合简单的页面开发 类似淘宝这种功能特别多的不适用</p>
+
+</body>
+
+</html>
