@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        margin: 20px auto;
+    }
+</style>
+
+<body>
+    <div id="box" class="box"></div>
+
+</body>
+<script src="./hammer.min.js"></script>
+<script>
+    var boxEl = document.getElementById('box');
+
+    var hammer = new Hammer(boxEl);     //先new一个Hammer对象
+    hammer.on('swipe pan tap doubletap swipeleft', function (ev) {    //事件名称已被定义
+        console.log(ev.type);
+    })
+
+
+</script>
+
+</html>

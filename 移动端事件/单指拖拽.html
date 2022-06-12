@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ,user-scalable=no ,maximum-scale=1.0 ,minimum-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        height: 5000px;
+    }
+
+    .backtop {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, .6);
+        border-radius: 50%;
+        color: #fff;
+        font-size: 30px;
+        -webkit-tap-highlight-color: transparent;
+        /* transform: translate3d();   */
+        /* 使用3d在移动端会开启GPU加速 */
+    }
+</style>
+
+<body>
+    <p>浏览器默认事件拖动是拖动滚动条的</p>
+    <p>所以拖动事件不好用 阻止默认行为在start move end中一个写就行</p>
+    <p>通过touch实现更多触摸事件</p>
+    <a href="#" id="backtop" class="backtop">&uarr;</a>
+
+</body>
+<script>
+    var backtop = document.getElementById('backtop');
+    drag(backtop, {
+        x: true,
+        y: true
+    });
+
+    function drag(el, options) {
+        options.x = typeof options.x !== 'undefined' ? options.x : true;
+        options.y = typeof options.y !== 'undefined' ? options.y : false;
+
+        if (!options.x && !options.y) return;
+
+        var curPoint = {
+            x: 0,
+            y: 0
+        };
+
+        var startPoint = {};
+
+        var isTouchMove = false;
+
+        el.addEventListener('touchstart', handleStart, false);
+        el.addEventListener('touchmove', handleMove, false);
+        el.addEventListener('touchend', handleEnd, false);
+
+        function handleStart(ev) {
+            var touch = ev.changedTouches[0];
+
+            startPoint.x = touch.pageX;
+            startPoint.y = touch.pageY;
+        }
+
+        function handleMove(ev) {
+            ev.preventDefault();
+
+            isTouchMove = true;
+
+            var touch = ev.changedTouches[0];
+            var diffPoint = {};
+            var movePoint = {
+                x: 0,
+                y: 0
+            };
+
+            diffPoint.x = touch.pageX - startPoint.x;
+            diffPoint.y = touch.pageY - startPoint.y;
+
+            if (options.x) {
+                movePoint.x = diffPoint.x + curPoint.x;
+            }
+
+            if (options.y) {
+                movePoint.y = diffPoint.y + curPoint.y;
+            }
+
+            move(el, movePoint.x, movePoint.y)
+        }
+
+        function handleEnd(ev) {
+            var touch = ev.changedTouches[0];
+
+            if (!isTouchMove) return;
+
+            curPoint.x += touch.pageX - startPoint.x;
+            curPoint.y += touch.pageY - startPoint.y;
+
+            isTouchMove = false;
+
+        }
+
+        function move(el, x, y) {
+            x = x || 0;
+            y = y || 0;
+
+            el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+
+        }
+    }
+
+</script>
+
+
+
+<!-- <script>
+    var backtop = document.getElementById('backtop');
+    var curPoint = {
+        x: 0,
+        y: 0
+    }
+
+    backtop.addEventListener('click', function () {
+        // move(this, 0, 0);
+        // 会以当前位置为默认0,0,0
+        move(this, -10 + curPoint.x, -10 + curPoint.y);
+        curPoint.x += -10;
+        curPoint.y += -10;
+    }, false)
+
+    function move(el, x, y) {
+        x = x || 0;
+        y = y || 0;
+
+        el.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+
+    }
+    function moveX() {
+
+    }
+</script> -->
+
+</html>

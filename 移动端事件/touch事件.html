@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 ,user-scalable=no ,maximum-scale=1.0
+                ,minimum-scale=1.0">
+    <title>touch事件</title>
+</head>
+<style>
+    .box {
+        width: 150px;
+        height: 150px;
+        background-color: red;
+        margin: 20px auto;
+    }
+</style>
+
+<body>
+    <p>altKey 是否按住alt键</p>
+    <p>bubbles 是否冒泡</p>
+    <p>cancelBubble 是否取消冒泡</p>
+    <p>cancelable 是否可以取消冒泡</p>
+    <p>type 当前触发的事件类型</p>
+    <p>target 当前按在什么上</p>
+    <p>touches 所有的触摸点</p>
+    <p>targetTouches 单前的触摸点</p>
+    <p>changedTouches 当前发生变化触摸列表 包含列表触摸等信息 其中length长度表示触摸手指个数</p>
+
+    <div id="box" class="box"></div>
+
+</body>
+<script>
+    var boxEl = document.getElementById('box');
+
+    // boxEl.ontouchstart = handleStart;     //触摸开始
+    // boxEl.ontouchmove = handleMove;      //触摸后移动过程
+    // boxEl.ontouchend = handleEnd;        //触摸结束
+    // boxEl.ontouchcancel = handleCancel;     //触摸中断
+
+    // 推荐用add写
+    boxEl.addEventListener('touchstart', handleStart, false);
+    boxEl.addEventListener('touchmove', handleMove, false);
+    boxEl.addEventListener('touchend', handleEnd, false);
+    boxEl.addEventListener('touchcancel', handleCancel, false);
+
+    function handleStart(ev) {
+        console.log('touchstart', ev);
+
+        var touch = ev.changedTouches[0];   //打印出来这里的列表有我们想要的信息 
+        console.log(touch);
+        // clientX clientY可视区域
+        // pageX pageY页面区域
+        // radiusX radiusY触摸点XY值
+        // force 按的力的大小 现在已经不用了
+        // identifier 唯一标识符
+        // rotationAngle 旋转角度
+
+
+    }
+
+    function handleMove() {
+        console.log('touchmove');
+    }
+
+    function handleEnd() {
+        console.log('touchend');
+    }
+
+    function handleCancel() {
+        console.log('touchcancel');
+    }
+</script>
+
+</html>
