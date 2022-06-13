@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- dom很珍贵 保存下来是为了减少对dom的操作次数 -->
+    <!-- 如对dom元素循环添加 应先将循环的代码另存变量中 全部完成后将变量赋值给dom树中 -->
+    <p>1 能用id查找dom元素就用id 其是最准确也是优化点</p>
+    <p>2 能从父元素妄下找子元素尽量不用document全文找 如父.getid()</p>
+    <!-- 不要多次使用document -->
+    <p>3 克隆是值得推荐的</p>
+    <p>4 length会增加浏览器的渲染次数</p>
+    <p>5 强烈推荐修改className 不要用style修改 减少次数</p>
+    <p>6 循环过程中第一位只执行一次 二三位跟着循环次数走 即length使用可以这样写 {
+        for(var i = 0 , num = ab.length; i < num; i++) </p>
+
+
+            <!-- 重排 重绘 -->
+</body>
+
+</html>

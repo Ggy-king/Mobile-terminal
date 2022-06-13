@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        display: block;
+        width: 400px;
+        height: 400px;
+    }
+</style>
+
+<body>
+    <p>1 这里资源指cssjs文件img图片 按需加载即加载现在需要使用的 预加载指在空闲的时间里加载其他的资源</p>
+    <p>2 思想：{
+        优先加载首屏上的图片 当滚动条滚动时判断在加载其余滚动到的地方的图片
+    </p>
+    <p>3 实现：{
+        一种方式: 1 用一张加载图片代替所有图片 设置自定义属性data-src等于真正的地址图片 在加上一个class类名表示这些图片是需要被延时加载的
+        2 在将所有有这个类名的img汇成一个数组 进行滚动条判断 当条件成立加载真正的图片 并在数组中去处 减少访问次数
+    </p>
+    <p>
+        4 预加载一般用在漫画时 new一个image 在哪调用其src属性即可完成预加载
+    </p>
+    <img src="../../图片储存/0.jpg" data-src="../../图片储存/2.jpg" alt="" class="lazyload-img">
+    <img src="../../图片储存/0.jpg" data-src="../../图片储存/3.jpg" alt="" class="lazyload-img">
+    <img src="../../图片储存/0.jpg" data-src="../../图片储存/4.jpg" alt="" class="lazyload-img">
+    <img src="../../图片储存/0.jpg" data-src="../../图片储存/2.jpg" alt="" class="lazyload-img">
+    <img src="../../图片储存/0.jpg" data-src="../../图片储存/2.png" alt="" class="lazyload-img">
+    <img src="../../图片储存/0.jpg" data-src="../../图片储存/2.jpg" alt="" class="lazyload-img">
+
+
+</body>
+<script>
+    // 图片按需加载
+    var lazyLoadClass = '.lazyload-img';
+    var imgArr = Array.prototype.slice.call(document.querySelectorAll(lazyLoadClass));
+
+    lazyLoadImgs();
+
+    var timer = null;
+    window.addEventListener('scroll', function () {
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+            lazyLoadImgs();
+        }, 100);
+    }, false);
+
+    function lazyLoadImgs() {
+        for (var i = 0; i < imgArr.length; i++) {
+            if (isInVisibleArea(imgArr[i])) {
+                imgArr[i].src = imgArr[i].getAttribute('data-src');
+                imgArr.splice(i, 1);
+                i--;
+            }
+        }
+    }
+
+
+    function isInVisibleArea(el) {
+        var rect = el.getBoundingClientRect();
+
+        return rect.bottom > 0 && rect.top < window.innerHeight && rect.right > 0 && rect.left < window.innerWidth;
+    }
+
+    // 上面的代码无法实现 我猜测是因为img本身的高度不明确 js无法判断scroll
+
+    // 2. 其他内容的按需加载
+    // loadProduct();
+    // window.addEventListener('scroll', loadProduct, false);
+
+    // function loadProduct() {
+    //     if (isInVisibleArea(document.getElementById('product'))) {
+    //         var script = document.createElement('script');
+    //         // script.src = 'js/loadProduct.js';
+    //         setTimeout(function () {
+    //             script.src = './loadProduct.js';
+    //         }, 1000);
+    //         document.body.appendChild(script);
+
+    //         window.removeEventListener('scroll', loadProduct, false);
+    //     }
+    // }
+
+    // // 3. 图片预加载
+    // var img = new Image();
+    // img.src = '../../图片储存/212.jpg';
+</script>
+
+</html>

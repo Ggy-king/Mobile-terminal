@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>图片</p>
+    <p>http请求大{
+        解决办法 图片压缩处理
+        使用更高压缩比的图片 webp
+        尽量减少图片使用
+        图标字体代替
+        css画图
+    </p>
+    <p>http请求多{
+        解决办法 合理使用base64内嵌图片
+        合并静态资源图片--雪碧图
+
+    </p>
+
+    <p>所有链接都要写上 减少浏览器的请求</p>
+    <p>不建议使用慢标签</p>
+    <p>减少嵌套</p>
+    <p>浏览器解析从上到下 可以先写主要内容</p>
+
+    <div>
+        <div>
+            <div>
+                <div>
+                    <div>
+                        嵌套越多浏览器解析时间越长
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="###">一定要写空连接 不然浏览器还会发送请求</a>
+    <img src="img/1.jpg" alt="">
+    <link rel="stylesheet" href="###">
+    <!-- <script src="./html中的css与js优化.html"></script> -->
+
+    <!-- 慢元素  不推荐使用 他们会把其内容全部读取之后在进行渲染 -->
+    <table></table>
+    <iframe src="" frameborder="0"></iframe>
+    <!-- 慢元素 -->
+</body>
+
+</html>

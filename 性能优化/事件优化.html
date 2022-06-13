@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>1 如果动态的给每一个子元素创建一个监听事件 耗费性能 可以考虑事件委托</p>
+
+</body>
+<script>
+    // jQuery/Zepto 事件委托 a=父
+    // $(a).on('click','.子',function(){})
+
+    // 原生js 事件委托 a=父
+    // a.addEventListener('click',function(ev){
+    //     if(ev.target && /(^|\s)classname($|\S)/.test(ev.target.className)) {
+    //         console.log('click')
+    //     }
+    // })
+
+    // 函数节流  scroll resize mousemove touchmove 非常的消耗性能
+    // 简单的处理 定时器处理
+    var timer = null;
+    window.addEventListener('scroll',function(){
+        clearTimeout(timer);
+        timer = setTimeout(function(){
+            console.log('scroll')
+        },100);
+    },false);
+</script>
+
+</html>

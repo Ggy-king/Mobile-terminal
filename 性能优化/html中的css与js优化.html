@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>http请求 占了大部分时间 主要是建立通道浪费时间</p>
+    <p>css js 首屏必备的部分可以内联进来 非首屏即不是一进来就需要看到的部分可以通过外联方式引入</p>
+    <!-- 如js的屏幕适配代码是首屏必备 一般通过内联方式引入 -->
+    <p>放置问题 css样式文件应该早引入早渲染 js文件一般放在body后等所有dom文件加载完之后在执行 除个别如屏幕适配 还有ajax请求数据</p>
+    <p>代码不要重复引入 不是所有浏览器都会走缓存</p>
+    <p>上线都要压缩 去掉空格注释等 还要合并文件 而且还不要太大</p>
+    <!-- 提醒后端开启缓存 -->
+    <style>
+        /* 内联 */
+        /* 优点： */
+        /* 减少http请求 */
+
+        /* 缺点 */
+        /* 1 没办法复用 即本地浏览器无缓存 */
+        /* 2 使http文件变大 加载时间更长 */
+        /* 3 不利于后期维护 但工程化的手段可以解决问题 原码到可以上线的代码 */
+    </style>
+    <!-- style-js-link外联 -->
+    <!-- 优点 很好的复用性 利于浏览器的静态保存 利于后期维护 -->
+    <!-- 缺点 增加了http请求 -->
+    <script>
+
+    </script>
+
+</body>
+
+</html>
